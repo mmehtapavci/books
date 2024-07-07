@@ -1,4 +1,4 @@
-/* Genel Ayarlar */
+/* General Settings */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +6,7 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Kitap Listesi */
+/* Book List */
 .book-list {
     display: flex;
     flex-wrap: wrap;
@@ -14,35 +14,49 @@ body {
     padding: 20px;
 }
 
-/* Kitap Gösterimi */
+/* Individual Book Card */
 .book-show {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    margin: 10px;
+    width: calc(25% - 20px); /* Adjusted width for four books per row */
     overflow: hidden;
     transition: transform 0.2s;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-show:hover {
+    transform: translateY(-5px);
 }
 
 .book-show img {
     width: 100%;
     height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 10px; /* Add margin below image */
 }
 
-.book-show div {
+.book-show .details {
     padding: 20px;
+    flex: 1; /* Ensures details take remaining space */
 }
 
 .book-show h3 {
     margin: 0;
     font-size: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book-show .actions {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px 20px 20px;
+    padding: 10px 20px;
+    margin-top: auto; /* Push actions to the bottom */
 }
 
 .book-show .edit,
@@ -53,6 +67,7 @@ body {
     color: white;
     cursor: pointer;
     padding: 10px;
+    margin-top: -10px;
     transition: background 0.3s;
 }
 
@@ -68,50 +83,56 @@ body {
     background: #c82333;
 }
 
-/* Kitap Oluşturma */
-.book-create {
+/* Book Creation and Editing Form */
+.book-form {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    margin: 20px auto;
     padding: 20px;
+    max-width: 600px;
 }
 
-.book-create h3 {
+.book-form h3 {
     margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
-.book-create .input,
-.book-edit .input {
+.book-form .form-group {
+    margin-bottom: 20px;
+}
+
+.book-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.book-form input[type="text"],
+.book-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
+    font-size: 1em;
 }
 
-.book-create .button,
-.book-edit .button {
-    background: #28a745;
-    border: none;
-    border-radius: 4px;
+.book-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.book-form .btn {
+    background-color: #28a745;
     color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
-    padding: 10px;
-    margin-top: 10px;
-    transition: background 0.3s;
+    transition: background-color 0.3s;
 }
 
-.book-create .button:hover,
-.book-edit .button:hover {
-    background: #218838;
-}
-
-/* Kitap Düzenleme */
-.book-edit {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    padding: 20px;
+.book-form .btn:hover {
+    background-color: #218838;
 }
