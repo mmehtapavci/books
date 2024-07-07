@@ -1,0 +1,117 @@
+/* Genel Ayarlar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Kitap Listesi */
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Kitap Gösterimi */
+.book-show {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    width: 300px;
+}
+
+.book-show img {
+    width: 100%;
+    height: auto;
+}
+
+.book-show div {
+    padding: 20px;
+}
+
+.book-show h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.book-show .actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 20px 20px;
+}
+
+.book-show .edit,
+.book-show .delete {
+    background: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.book-show .edit:hover {
+    background: #0056b3;
+}
+
+.book-show .delete {
+    background: #dc3545;
+}
+
+.book-show .delete:hover {
+    background: #c82333;
+}
+
+/* Kitap Oluşturma */
+.book-create {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+}
+
+.book-create h3 {
+    margin-top: 0;
+}
+
+.book-create .input,
+.book-edit .input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.book-create .button,
+.book-edit .button {
+    background: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.book-create .button:hover,
+.book-edit .button:hover {
+    background: #218838;
+}
+
+/* Kitap Düzenleme */
+.book-edit {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+}

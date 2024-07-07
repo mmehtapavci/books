@@ -1,4 +1,6 @@
 import BookShow from "./BookShow";
+import '../styles.css';
+
 
 // BookList bileşeni, props olarak books, onDelete ve onEdit alır.
 function BookList({ books, onDelete, onEdit }) {

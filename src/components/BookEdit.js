@@ -1,5 +1,6 @@
 // React'ten useState hook'unu içe aktarıyoruz
 import { useState } from 'react';
+import '../styles.css';
 
 function BookEdit({ book, onSubmit }) {
     // title state'ini book.title ile başlatıyoruz
