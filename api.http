@@ -1,0 +1,14 @@
+GET http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+# GET İsteği ile kitap listesini almak, uygulamanın kullanıcıya mevcut kitapları gösterebilmesi için gereklidir.
+
+
+###
+
+POST http://localhost:3001/books HTTP/1.1
+Content-Type: application/json
+# POST İsteği ile yeni bir kitap eklemek, kullanıcıların veri tabanına yeni bilgiler ekleyebilmesini sağlar.
+
+{
+    "title": "Harry Pother"
+}
