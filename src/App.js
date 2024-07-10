@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList';
 import './styles.css';
@@ -6,44 +7,68 @@ import './styles.css';
 function App() {
     const [books, setBooks] = useState([]);
 
-
-    // Kitabı kimliğe göre düzenle fonksiyonu
-    // editBookById adında bir fonksiyon tanımlanıyor, bu fonksiyon iki parametre alır: id ve newTitle.
-
-    const editBookById = (id, newTitle) => {
-        // books adlı bir diziyi map fonksiyonu ile dolaşıyoruz. map, her bir eleman için belirtilen işlemleri yapar ve yeni bir dizi döner.
-        const updatedBooks = books.map((book) => {
-            // Eğer mevcut book objesinin id'si, verilen id ile eşleşiyorsa:
-            if (book.id === id) {
-                // O zaman bu book objesinin title'ını newTitle ile değiştir ve yeni bir obje olarak geri döndür.
-                return { ...book, title: newTitle };
-            }
-            // Eğer id'ler eşleşmiyorsa, book objesini olduğu gibi geri döndür.
-            return book;
-        });
-        // setBooks fonksiyonu ile updatedBooks dizisini state olarak ayarla.
-        setBooks(updatedBooks);
+    // Kitapları API'den almak için kullanılan fonksiyon
+    const fetchBooks = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/books');
+            setBooks(response.data);
+        } catch (error) {
+            console.error('Error fetching books:', error);
+        }
     };
 
+    useEffect(() => {
+        fetchBooks();
+    }, []);
 
-    // Kitabı sil Fonksiyonu
-    const deleteBookById = (id) => {
-        const updatedBooks = books.filter((book) => {
-            return book.id !== id;
-        });
-        setBooks(updatedBooks);
+    // Kitabı kimliğe göre düzenle fonksiyonu
+    const editBookById = async (id, newTitle) => {
+        try {
+            const response = await axios.put(`http://localhost:3001/books/${id}`, {
+                title: newTitle,
+            });
+
+            const updatedBooks = books.map((book) => {
+                if (book.id === id) {
+                    return { ...book, ...response.data };
+                }
+                return book;
+            });
+            setBooks(updatedBooks);
+        } catch (error) {
+            console.error('Error editing book:', error);
+        }
+    };
+
+    // Kitabı sil fonksiyonu
+    const deleteBookById = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3001/books/${id}`);
+
+            const updatedBooks = books.filter((book) => {
+                return book.id !== id;
+            });
+            setBooks(updatedBooks);
+        } catch (error) {
+            console.error('Error deleting book:', error);
+        }
     };
 
     // Kitap oluştur fonksiyonu
-    const createBook = (title) => {
-        const updatedBooks = [
-            ...books,
-            {
-                id: Math.round(Math.random() * 9999),
+    const createBook = async (title) => {
+        try {
+            const response = await axios.post('http://localhost:3001/books', {
                 title,
-            },
-        ];
-        setBooks(updatedBooks);
+            });
+
+            const updatedBooks = [
+                ...books,
+                response.data
+            ];
+            setBooks(updatedBooks);
+        } catch (error) {
+            console.error('Error creating book:', error);
+        }
     };
 
     return (
